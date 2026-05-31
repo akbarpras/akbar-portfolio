@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="page-title">Portofolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   PORTFOLIO V2 — Original Hero Design + All Features
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F5F0E8;
+  --sand: #E8E0D0;
+  --clay: #C9B99A;
+  --terracotta: #C0714F;
+  --forest: #3D5A47;
+  --ink: #1E1E1E;
+  --mist: #7A7670;
+  --white: #FDFCFA;
+  --card-bg: #EFEBE2;
+  --accent: #C0714F;
+  --border: #E5DDD0;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   TOP NAV
+   ============================================================ */
+.topnav {
+  position: sticky; top: 0; left: 0; right: 0;
+  padding: 22px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 100;
+  background: rgba(245, 240, 232, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 185, 154, 0.3);
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+}
+.nav-logo .dot { color: var(--terracotta); }
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.nav-links a {
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
+  text-decoration: none; color: var(--mist);
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--terracotta); }
+
+.nav-edit-btn {
+  padding: 8px 18px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-edit-btn:hover { background: var(--terracotta); transform: translateY(-1px); }
+
+.mobile-menu {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+/* ============================================================
+   PAGES
+   ============================================================ */
+.page { display: none; animation: fadeIn 0.4s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ============================================================
+   HERO (Original Design)
+   ============================================================ */
+.hero {
+  min-height: calc(100vh - 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 100px 60px 80px;
+  gap: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-shape {
+  position: absolute;
+  right: -120px; top: 50%;
+  transform: translateY(-50%);
+  width: 600px; height: 600px;
+  border-radius: 60% 40% 50% 60% / 50% 60% 40% 50%;
+  background: linear-gradient(135deg, var(--sand) 0%, var(--clay) 100%);
+  opacity: 0.5;
+  animation: morphBlob 12s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+@keyframes morphBlob {
+  0%,100% { border-radius: 60% 40% 50% 60% / 50% 60% 40% 50%; }
+  33%     { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+  66%     { border-radius: 50% 50% 30% 70% / 40% 70% 30% 60%; }
+}
+
+.hero-left { position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--clay);
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500;
+  color: var(--mist); margin-bottom: 24px;
+  animation: fadeUp 0.7s 0.1s both;
+}
+.dot-anim {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--forest);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero-h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  animation: fadeUp 0.8s 0.2s both;
+}
+.hero-h1 em { font-style: italic; color: var(--terracotta); }
+.hero-desc {
+  margin-top: 28px; max-width: 460px;
+  font-size: 1rem; line-height: 1.75;
+  color: var(--mist); font-weight: 300;
+  animation: fadeUp 0.8s 0.35s both;
+}
+.hero-actions {
+  margin-top: 44px; display: flex; gap: 16px;
+  animation: fadeUp 0.8s 0.5s both;
+  flex-wrap: wrap;
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeLeft { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:translateX(0)} }
+
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 16px;
+  animation: fadeLeft 0.9s 0.4s both;
+}
+.hero-card {
+  background: var(--white);
+  border: 1px solid rgba(201, 185, 154, 0.4);
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex; align-items: center; gap: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
+.card-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.card-icon.ui  { background: #EDE8F5; }
+.card-icon.web { background: #E8F0ED; }
+.card-icon.da  { background: #F5EDE8; }
+.card-info h3 { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
+.card-info p { font-size: 0.8rem; color: var(--mist); margin-top: 3px; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
+  padding: 14px 32px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.25s, transform 0.2s;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
+
+.btn-outline {
+  padding: 13px 28px;
+  border: 1.5px solid var(--clay);
+  color: var(--ink);
+  background: transparent;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-outline:hover { border-color: var(--terracotta); color: var(--terracotta); transform: translateY(-2px); }
+
+.btn-large { padding: 16px 38px; font-size: 0.95rem; }
+
+.btn-add {
+  padding: 10px 20px;
+  background: rgba(192, 113, 79, 0.1);
+  color: var(--terracotta);
+  border: 1px solid rgba(192, 113, 79, 0.35);
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-add:hover { background: var(--terracotta); color: #fff; border-color: var(--terracotta); }
+
+/* ============================================================
+   STATS STRIP
+   ============================================================ */
+.stats-strip {
+  background: var(--ink);
+  padding: 32px 60px;
+  display: flex; justify-content: space-around; align-items: center;
+}
+.stat-item { text-align: center; }
+.stat-item .num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  color: var(--cream);
+  display: block;
+}
+.stat-item .label {
+  font-size: 0.78rem;
+  color: var(--clay);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+/* ============================================================
+   INNER PAGES & SECTIONS
+   ============================================================ */
+.inner-page { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.page-header { margin-bottom: 48px; }
+
+/* ============================================================
+   HOME NAV SECTION (Cards)
+   ============================================================ */
+.home-nav-section { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.home-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+.home-nav-card {
+  background: var(--white);
+  border: 1px solid rgba(201, 185, 154, 0.4);
+  border-radius: 20px;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+.home-nav-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  border-color: var(--terracotta);
+}
+.hnc-icon { font-size: 2rem; margin-bottom: 16px; }
+.home-nav-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.home-nav-card p {
+  font-size: 0.85rem;
+  color: var(--mist);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+.hnc-arrow {
+  font-size: 1.1rem;
+  color: var(--terracotta);
+  font-weight: 500;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.home-nav-card:hover .hnc-arrow { transform: translateX(4px); }
+
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+.about-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.about-photo-frame {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 40px 40px 120px 40px;
+  background: linear-gradient(135deg, var(--sand), var(--clay));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  color: var(--white);
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+.about-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.about-info-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+.aic-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  gap: 14px;
+}
+.aic-row:last-child { border-bottom: none; }
+.aic-key { color: var(--mist); font-weight: 500; flex-shrink: 0; }
+.aic-val { color: var(--ink); text-align: right; }
+
+.about-h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.about-paragraph {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--mist);
+  font-weight: 300;
+}
+.about-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   PROJECTS PAGE
+   ============================================================ */
+.proj-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--clay);
+  background: transparent;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--mist);
+  transition: all 0.2s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.proj-card {
+  background: var(--white);
+  border: 1px solid rgba(201, 185, 154, 0.4);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.proj-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+.proj-thumb {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+  background: var(--sand);
+}
+.proj-thumb-uiux { background: linear-gradient(135deg, #EDE8F5, #C4B5D8); }
+.proj-thumb-web { background: linear-gradient(135deg, #E8F0ED, #B8D4C4); }
+.proj-thumb-data { background: linear-gradient(135deg, #F5EDE8, #D4C4B8); }
+.proj-thumb-mobile { background: linear-gradient(135deg, #E8EDF5, #B8C4D4); }
+.proj-thumb-lainnya { background: linear-gradient(135deg, #F5F0E8, #D4CDB8); }
+
+.proj-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.proj-status-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+.status-done { background: rgba(61, 90, 71, 0.15); color: var(--forest); }
+.status-ongoing { background: rgba(192, 113, 79, 0.15); color: var(--terracotta); }
+
+.proj-body { padding: 22px 24px; }
+.proj-body h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.proj-body p {
+  font-size: 0.83rem;
+  color: var(--mist);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.proj-tools-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.proj-tool-tag {
+  padding: 3px 10px;
+  background: var(--cream);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--mist);
+}
+.proj-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.proj-impact {
+  font-size: 0.75rem;
+  color: var(--forest);
+  font-weight: 600;
+}
+.proj-links { display: flex; gap: 6px; align-items: center; }
+.proj-link-btn {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--terracotta);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid rgba(192, 113, 79, 0.3);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.proj-link-btn:hover { background: var(--terracotta); color: #fff; }
+.proj-delete-btn {
+  font-size: 0.78rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  color: #999;
+}
+.proj-delete-btn:hover { background: rgba(231,76,60,0.1); color: #e74c3c; }
+
+/* ============================================================
+   SKILLS PAGE
+   ============================================================ */
+.skills-container { display: flex; flex-direction: column; gap: 36px; }
+.skill-category-block {}
+.skill-cat-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 18px;
+}
+.skill-items { display: flex; flex-direction: column; gap: 14px; }
+.skill-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+}
+.skill-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.skill-item-name { font-size: 0.9rem; font-weight: 500; }
+.skill-item-level { font-size: 0.82rem; color: var(--terracotta); font-weight: 600; }
+.skill-bar-track {
+  height: 6px;
+  background: var(--sand);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--terracotta), var(--clay));
+  transition: width 1s ease;
+}
+.skill-del-btn {
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  color: #999;
+  margin-left: 10px;
+}
+.skill-del-btn:hover { background: rgba(231,76,60,0.1); color: #e74c3c; }
+
+/* ============================================================
+   EXPERIENCE PAGE (Timeline)
+   ============================================================ */
+.exp-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--clay);
+}
+.exp-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -28px; top: 18px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  border: 3px solid var(--cream);
+  z-index: 1;
+}
+.exp-item.edu::before { background: var(--forest); }
+.exp-item.cert::before { background: #D4A634; }
+.exp-item.org::before { background: var(--mist); }
+
+.exp-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 26px;
+  transition: box-shadow 0.2s;
+}
+.exp-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.exp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.exp-card-type {
+  font-size: 0.72rem;
+  color: var(--mist);
+  margin-bottom: 5px;
+  letter-spacing: 0.04em;
+}
+.exp-card-title { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.exp-card-period {
+  font-size: 0.78rem;
+  color: var(--terracotta);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.exp-card-company {
+  font-size: 0.88rem;
+  color: var(--mist);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.exp-card-desc {
+  font-size: 0.85rem;
+  color: var(--mist);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.exp-card-actions { margin-top: 12px; }
+.exp-del-btn {
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  color: #999;
+}
+.exp-del-btn:hover { background: rgba(231,76,60,0.1); color: #e74c3c; }
+
+/* ============================================================
+   DOCUMENTS PAGE
+   ============================================================ */
+.upload-zone {
+  border: 2px dashed var(--clay);
+  border-radius: 20px;
+  padding: 56px 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-bottom: 36px;
+  background: var(--white);
+}
+.upload-zone:hover, .upload-zone.dragover {
+  border-color: var(--terracotta);
+  background: rgba(192, 113, 79, 0.04);
+}
+.upload-icon {
+  font-size: 2.2rem;
+  margin-bottom: 14px;
+  color: var(--clay);
+}
+.upload-zone p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.upload-zone span { font-size: 0.8rem; color: var(--mist); }
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.doc-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+}
+.doc-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.doc-icon { font-size: 2.6rem; }
+.doc-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  word-break: break-word;
+  line-height: 1.4;
+}
+.doc-meta { font-size: 0.72rem; color: var(--mist); }
+.doc-actions { display: flex; gap: 8px; margin-top: 4px; }
+.doc-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--mist);
+  transition: all 0.2s;
+}
+.doc-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
+.doc-btn.danger:hover { border-color: #e74c3c; color: #e74c3c; }
+
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+}
+.contact-intro {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--mist);
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.contact-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-link-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.contact-link-item:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  transform: translateX(4px);
+}
+.cli-icon { font-size: 1.3rem; }
+.cli-sub {
+  font-size: 0.76rem;
+  color: var(--mist);
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+.contact-form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+}
+
+/* ============================================================
+   FORM STYLES
+   ============================================================ */
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-group label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--mist);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.form-group input, .form-group textarea, .form-group select {
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--cream);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  border-color: var(--terracotta);
+  background: var(--white);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ============================================================
+   EDIT PROFILE PAGE
+   ============================================================ */
+.edit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.edit-section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+}
+.edit-section.full-width { grid-column: 1 / -1; }
+.edit-h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.photo-upload-area {
+  border: 2px dashed var(--clay);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.photo-upload-area:hover { border-color: var(--terracotta); background: rgba(192, 113, 79, 0.04); }
+.photo-upload-area p { font-size: 0.88rem; font-weight: 500; }
+.photo-upload-area span { font-size: 0.74rem; color: var(--mist); }
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+.modal {
+  background: var(--white);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+}
+.modal-large { max-width: 720px; }
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1;
+}
+.modal-header h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+.modal-close {
+  background: var(--sand);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: var(--clay); }
+.modal-body { padding: 26px 30px; }
+.modal-footer {
+  padding: 20px 30px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 40px;
+  color: var(--mist);
+}
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+.empty-state p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.35s;
+  z-index: 900;
+  pointer-events: none;
+  max-width: 320px;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: var(--forest); }
+.toast.error { background: #c0392b; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--ink);
+  padding: 24px 60px;
+  text-align: center;
+}
+footer p { color: var(--mist); font-size: 0.82rem; }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--clay); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--terracotta); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .topnav { padding: 18px 28px; }
+  .hero { padding: 60px 28px; gap: 36px; grid-template-columns: 1fr; }
+  .hero-bg-shape { display: none; }
+  .home-nav-section, .inner-page { padding: 60px 28px; }
+  .stats-strip { padding: 24px 28px; }
+  .home-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .docs-grid { grid-template-columns: repeat(3, 1fr); }
+  .about-layout { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .edit-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .topnav { padding: 14px 20px; flex-wrap: wrap; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--white); border-bottom: 1px solid var(--border); padding: 12px 0; }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 12px 24px; }
+  .nav-edit-btn { display: none; }
+  .mobile-menu { display: block; }
+
+  .hero { padding: 48px 20px; min-height: auto; }
+  .hero-h1 { font-size: 2.6rem; }
+  .home-nav-section, .inner-page { padding: 48px 20px; }
+  .stats-strip { flex-wrap: wrap; gap: 16px; padding: 20px; }
+  .stat-divider { display: none; }
+  .home-cards-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .docs-grid { grid-template-columns: repeat(2, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .proj-controls { flex-direction: column; align-items: flex-start; }
+  footer { padding: 20px; }
+}
+
+/* ============================================================
+   TWO-SIDE MODE (Admin vs Viewer)
+   ============================================================ */
+
+/* By default, admin-only elements are hidden */
+.admin-only { display: none !important; }
+
+/* When body has admin-mode class, show admin elements */
+body.admin-mode .admin-only { display: revert !important; }
+body.admin-mode .admin-only.btn-add,
+body.admin-mode .admin-only.nav-edit-btn { display: inline-block !important; }
+
+/* View Mode Badge (default, shown to visitors) */
+.view-mode-badge {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--clay);
+  padding: 10px 14px 10px 16px;
+  border-radius: 100px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  font-size: 0.82rem;
+  color: var(--mist);
+  z-index: 800;
+  font-weight: 500;
+}
+.vmb-icon { font-size: 1rem; }
+.vmb-text { display: inline-block; }
+.vmb-login-btn {
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: background 0.2s;
+}
+.vmb-login-btn:hover { background: var(--terracotta); }
+
+/* Admin Badge (shown when logged in) */
+.admin-badge {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 10px 14px 10px 16px;
+  border-radius: 100px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+  font-size: 0.82rem;
+  font-weight: 600;
+  z-index: 800;
+}
+.ab-icon { font-size: 1rem; }
+.ab-logout-btn {
+  background: rgba(255,255,255,0.15);
+  color: var(--cream);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: background 0.2s;
+}
+.ab-logout-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* Hide view badge when in admin mode, show admin badge */
+body.admin-mode .view-mode-badge { display: none; }
+body.admin-mode .admin-badge { display: flex; }
+
+/* Hide delete/edit buttons inside cards for viewers */
+.proj-delete-btn, .skill-del-btn, .exp-del-btn { display: none; }
+body.admin-mode .proj-delete-btn,
+body.admin-mode .skill-del-btn,
+body.admin-mode .exp-del-btn { display: inline-block; }
+
+/* Hide doc delete button for viewers (show only Download) */
+.doc-btn.danger { display: none; }
+body.admin-mode .doc-btn.danger { display: inline-block; }
+
+@media (max-width: 768px) {
+  .view-mode-badge, .admin-badge {
+    bottom: 16px; left: 50%; transform: translateX(-50%);
+    padding: 8px 12px 8px 14px;
+    font-size: 0.76rem;
+  }
+  .vmb-text { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- VIEW MODE BADGE -->
+<div class="view-mode-badge" id="view-badge">
+  <span class="vmb-icon">👁️</span>
+  <span class="vmb-text">Tampilan Pengunjung</span>
+  <button class="vmb-login-btn" onclick="openLoginModal()">🔒 Login Admin</button>
+</div>
+
+<!-- ADMIN BADGE (when logged in) -->
+<div class="admin-badge" id="admin-badge">
+  <span class="ab-icon">🔓</span>
+  <span class="ab-text">Mode Admin</span>
+  <button class="ab-logout-btn" onclick="logoutAdmin()">Logout</button>
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <span id="nav-name-text">Alex</span><span class="dot">.</span>
+  </div>
+  <ul class="nav-links">
+    <li><a data-page="home" onclick="showPage('home')" class="active">Home</a></li>
+    <li><a data-page="about" onclick="showPage('about')">Tentang</a></li>
+    <li><a data-page="projects" onclick="showPage('projects')">Proyek</a></li>
+    <li><a data-page="skills" onclick="showPage('skills')">Keahlian</a></li>
+    <li><a data-page="experience" onclick="showPage('experience')">Pengalaman</a></li>
+    <li><a data-page="documents" onclick="showPage('documents')">Dokumen</a></li>
+    <li><a data-page="contact" onclick="showPage('contact')">Kontak</a></li>
+  </ul>
+  <button class="nav-edit-btn admin-only" onclick="showPage('edit')">✎ Edit Profil</button>
+  <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+</nav>
+
+<main>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="dot-anim"></span>
+        <span id="h-status">Tersedia untuk proyek baru</span>
+      </div>
+      <h1 class="hero-h1">
+        <span id="h-line1">Desainer &</span><br>
+        <em id="h-line2">Developer</em><br>
+        <span id="h-line3">yang Bercerita</span><br>
+        <span id="h-line4">lewat Data.</span>
+      </h1>
+      <p class="hero-desc" id="h-desc">Saya menggabungkan UI/UX design, web development, dan data analytics untuk menciptakan pengalaman digital yang bermakna dan berbasis insight.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('projects')">Lihat Karya Saya</button>
+        <button class="btn-outline" onclick="showPage('contact')">Hubungi Saya</button>
+      </div>
+    </div>
+    <div class="hero-right" id="hero-skill-cards">
+      <!-- rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stat-item"><span class="num" id="st-proj">0</span><span class="label">Proyek Selesai</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="num" id="st-skills">0</span><span class="label">Keahlian</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="num" id="st-exp">0</span><span class="label">Pengalaman</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="num" id="st-docs">0</span><span class="label">Dokumen</span></div>
+  </div>
+
+  <!-- Quick Navigation Cards -->
+  <section class="home-nav-section">
+    <span class="section-label">Jelajahi</span>
+    <h2 class="section-title">Apa yang Bisa Anda Temukan</h2>
+    <div class="home-cards-grid">
+      <div class="home-nav-card" onclick="showPage('about')">
+        <div class="hnc-icon">👤</div>
+        <h3>Tentang Saya</h3>
+        <p>Kenali saya lebih dekat — latar belakang, bidang pekerjaan, dan apa yang saya lakukan sehari-hari.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('projects')">
+        <div class="hnc-icon">💼</div>
+        <h3>Proyek Saya</h3>
+        <p>Kumpulan karya terbaik dari UI/UX design, web development, hingga data analytics.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('skills')">
+        <div class="hnc-icon">🛠️</div>
+        <h3>Keahlian</h3>
+        <p>Tools dan teknologi yang saya kuasai untuk membangun produk digital berkualitas.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('experience')">
+        <div class="hnc-icon">📜</div>
+        <h3>Pengalaman</h3>
+        <p>Perjalanan karir, pendidikan, dan sertifikasi yang telah saya tempuh.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('documents')">
+        <div class="hnc-icon">📄</div>
+        <h3>Dokumen</h3>
+        <p>CV, sertifikat, dan berkas pendukung lainnya yang bisa Anda lihat dan unduh.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('contact')">
+        <div class="hnc-icon">📬</div>
+        <h3>Kontak</h3>
+        <p>Mari berkolaborasi! Hubungi saya melalui platform pilihan Anda.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div class="page" id="page-about">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Tentang Saya</span>
+      <h2 class="section-title">Kenali Saya Lebih Dekat</h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-photo-side">
+        <div class="about-photo-frame">
+          <img id="a-photo" src="" alt="" style="display:none"/>
+          <div class="about-photo-placeholder" id="a-placeholder">👤</div>
+        </div>
+        <div class="about-info-card">
+          <div class="aic-row"><span class="aic-key">Nama</span><span class="aic-val" id="a-name">—</span></div>
+          <div class="aic-row"><span class="aic-key">Lokasi</span><span class="aic-val" id="a-loc">—</span></div>
+          <div class="aic-row"><span class="aic-key">Tanggal Lahir</span><span class="aic-val" id="a-birth">—</span></div>
+          <div class="aic-row"><span class="aic-key">Pendidikan</span><span class="aic-val" id="a-edu">—</span></div>
+          <div class="aic-row"><span class="aic-key">Pekerjaan</span><span class="aic-val" id="a-job">—</span></div>
+        </div>
+      </div>
+      <div class="about-text-side">
+        <h3 class="about-h3">Siapa Saya?</h3>
+        <p id="a-bio" class="about-paragraph">Bio Anda akan muncul di sini setelah mengisi profil di menu "Edit Profil".</p>
+        <h3 class="about-h3" style="margin-top:32px">Apa yang Saya Kerjakan?</h3>
+        <p id="a-what" class="about-paragraph">Deskripsi bidang pekerjaan dan kegiatan Anda.</p>
+        <div class="about-cta">
+          <button class="btn-primary" onclick="showPage('projects')">Lihat Proyek →</button>
+          <button class="btn-outline" onclick="showPage('documents')">Lihat Dokumen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PROJECTS PAGE ===== -->
+<div class="page" id="page-projects">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Portofolio</span>
+      <h2 class="section-title">Proyek yang Telah Dikerjakan</h2>
+    </div>
+    <div class="proj-controls">
+      <div class="filter-row" id="proj-filters"></div>
+      <button class="btn-add admin-only" onclick="openAddProject()">+ Tambah Proyek</button>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <div class="empty-state" id="proj-empty">
+        <div class="empty-icon">💼</div>
+        <p>Belum ada proyek. Klik <strong>"+ Tambah Proyek"</strong> untuk menambahkan.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== SKILLS PAGE ===== -->
+<div class="page" id="page-skills">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Keahlian</span>
+      <h2 class="section-title">Apa yang Saya Kuasai</h2>
+    </div>
+    <div style="text-align:right;margin-bottom:24px" class="admin-only">
+      <button class="btn-add" onclick="openAddSkill()">+ Tambah Keahlian</button>
+    </div>
+    <div class="skills-container" id="skills-container">
+      <div class="empty-state" id="skills-empty">
+        <div class="empty-icon">🛠️</div>
+        <p>Belum ada keahlian. Klik <strong>"+ Tambah Keahlian"</strong> untuk menambahkan.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EXPERIENCE PAGE ===== -->
+<div class="page" id="page-experience">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Perjalanan</span>
+      <h2 class="section-title">Pengalaman & Pendidikan</h2>
+    </div>
+    <div style="text-align:right;margin-bottom:24px" class="admin-only">
+      <button class="btn-add" onclick="openAddExp()">+ Tambah Pengalaman</button>
+    </div>
+    <div class="exp-timeline" id="exp-container">
+      <div class="empty-state" id="exp-empty">
+        <div class="empty-icon">📜</div>
+        <p>Belum ada pengalaman. Klik <strong>"+ Tambah Pengalaman"</strong> untuk menambahkan.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== DOCUMENTS PAGE ===== -->
+<div class="page" id="page-documents">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Dokumen</span>
+      <h2 class="section-title">CV, Sertifikat & Berkas</h2>
+    </div>
+    <div class="upload-zone admin-only" id="upload-zone" onclick="document.getElementById('file-input').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+      <div class="upload-icon">⬆</div>
+      <p>Klik atau drag & drop file di sini</p>
+      <span>PDF, DOC, DOCX, JPG, PNG — Maks. 10MB</span>
+      <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none" onchange="handleFileUpload(event)"/>
+    </div>
+    <div class="docs-grid" id="docs-grid">
+      <div class="empty-state" id="docs-empty">
+        <div class="empty-icon">📄</div>
+        <p>Belum ada dokumen. Upload dokumen Anda di atas.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div class="page" id="page-contact">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Kontak</span>
+      <h2 class="section-title">Mari Berkolaborasi</h2>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <p class="contact-intro">Punya proyek menarik atau ingin berdiskusi? Inbox saya selalu terbuka untuk ide-ide baru dan kesempatan kolaborasi.</p>
+        <div class="contact-link-list" id="contact-link-list"></div>
+      </div>
+      <div class="contact-form-card">
+        <form onsubmit="submitForm(event)">
+          <div class="form-group"><label>Nama Lengkap</label><input type="text" name="name" placeholder="Nama Anda" required/></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="email@domain.com" required/></div>
+          <div class="form-group"><label>Subjek</label>
+            <select name="subject">
+              <option>Kolaborasi Proyek</option>
+              <option>UI/UX Design</option>
+              <option>Web Development</option>
+              <option>Data Analytics</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Pesan</label><textarea name="message" rows="5" placeholder="Ceritakan kebutuhan Anda..." required></textarea></div>
+          <button type="submit" class="btn-primary" style="width:100%">Kirim Pesan →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EDIT PROFILE PAGE ===== -->
+<div class="page" id="page-edit">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Pengaturan</span>
+      <h2 class="section-title">Edit Profil</h2>
+    </div>
+    <div class="edit-grid">
+
+      <div class="edit-section">
+        <h3 class="edit-h3">📷 Foto Profil</h3>
+        <div class="photo-upload-area" onclick="document.getElementById('photo-input').click()">
+          <img id="edit-photo-preview" src="" alt="" style="display:none;width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:8px"/>
+          <div id="edit-photo-placeholder" style="font-size:3rem">📷</div>
+          <p>Klik untuk upload foto</p>
+          <span>JPG, PNG — Maks. 5MB</span>
+        </div>
+        <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)"/>
+      </div>
+
+      <div class="edit-section">
+        <h3 class="edit-h3">👤 Informasi Dasar</h3>
+        <div class="form-group"><label>Nama Lengkap</label><input type="text" id="e-name" placeholder="Nama lengkap"/></div>
+        <div class="form-group"><label>Tagline / Role</label><input type="text" id="e-role" placeholder="UI/UX Designer · Web Developer"/></div>
+        <div class="form-group"><label>Lokasi</label><input type="text" id="e-loc" placeholder="Kota, Provinsi"/></div>
+        <div class="form-group"><label>Tanggal Lahir</label><input type="text" id="e-birth" placeholder="DD Bulan YYYY"/></div>
+        <div class="form-group"><label>Pendidikan Terakhir</label><input type="text" id="e-edu" placeholder="S1 Teknik Informatika - Universitas ..."/></div>
+        <div class="form-group"><label>Pekerjaan Saat Ini</label><input type="text" id="e-job" placeholder="Freelancer / Nama Perusahaan"/></div>
+        <div class="form-group"><label>Status Ketersediaan</label>
+          <select id="e-status">
+            <option value="Tersedia untuk proyek baru">✅ Tersedia untuk proyek baru</option>
+            <option value="Tidak tersedia saat ini">🔴 Tidak tersedia saat ini</option>
+            <option value="Terbuka untuk diskusi">🟡 Terbuka untuk diskusi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="edit-section full-width">
+        <h3 class="edit-h3">✏️ Hero Headline (Judul Besar di Home)</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Baris 1</label><input type="text" id="e-line1" placeholder="Desainer &"/></div>
+          <div class="form-group"><label>Baris 2 (italic)</label><input type="text" id="e-line2" placeholder="Developer"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Baris 3</label><input type="text" id="e-line3" placeholder="yang Bercerita"/></div>
+          <div class="form-group"><label>Baris 4</label><input type="text" id="e-line4" placeholder="lewat Data."/></div>
+        </div>
+      </div>
+
+      <div class="edit-section full-width">
+        <h3 class="edit-h3">📝 Bio & Deskripsi</h3>
+        <div class="form-group"><label>Bio Singkat (tampil di Home)</label><textarea id="e-bio" rows="3" placeholder="Deskripsi singkat tentang diri Anda..."></textarea></div>
+        <div class="form-group"><label>Tentang Saya (tampil di About)</label><textarea id="e-about" rows="4" placeholder="Cerita lengkap tentang diri Anda..."></textarea></div>
+        <div class="form-group"><label>Bidang Pekerjaan</label><textarea id="e-what" rows="3" placeholder="Apa yang Anda kerjakan sehari-hari..."></textarea></div>
+      </div>
+
+      <div class="edit-section">
+        <h3 class="edit-h3">🔗 Tautan & Kontak</h3>
+        <div class="form-group"><label>✉️ Email</label><input type="email" id="e-email" placeholder="email@gmail.com"/></div>
+        <div class="form-group"><label>💼 LinkedIn URL</label><input type="url" id="e-linkedin" placeholder="https://linkedin.com/in/username"/></div>
+        <div class="form-group"><label>🐙 GitHub URL</label><input type="url" id="e-github" placeholder="https://github.com/username"/></div>
+        <div class="form-group"><label>🎨 Figma URL</label><input type="url" id="e-figma" placeholder="https://figma.com/@username"/></div>
+        <div class="form-group"><label>📱 WhatsApp (kode negara + nomor)</label><input type="text" id="e-wa" placeholder="6281234567890"/></div>
+        <div class="form-group"><label>🌐 Website Lain</label><input type="url" id="e-web" placeholder="https://website-anda.com"/></div>
+      </div>
+
+      <div class="edit-section">
+        <h3 class="edit-h3">💡 Kartu Keahlian di Home</h3>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px">Akan tampil di sebelah kanan hero section. Maksimal 3 kartu.</p>
+        <div class="form-row">
+          <div class="form-group"><label>Kartu 1 — Icon</label><input type="text" id="e-card1-icon" placeholder="🎨" maxlength="2"/></div>
+          <div class="form-group"><label>Kartu 1 — Judul</label><input type="text" id="e-card1-title" placeholder="UI/UX Design"/></div>
+        </div>
+        <div class="form-group"><label>Kartu 1 — Tools</label><input type="text" id="e-card1-desc" placeholder="Figma · Prototyping · User Research"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Kartu 2 — Icon</label><input type="text" id="e-card2-icon" placeholder="💻" maxlength="2"/></div>
+          <div class="form-group"><label>Kartu 2 — Judul</label><input type="text" id="e-card2-title" placeholder="Web Development"/></div>
+        </div>
+        <div class="form-group"><label>Kartu 2 — Tools</label><input type="text" id="e-card2-desc" placeholder="HTML · CSS · JavaScript · React"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Kartu 3 — Icon</label><input type="text" id="e-card3-icon" placeholder="📊" maxlength="2"/></div>
+          <div class="form-group"><label>Kartu 3 — Judul</label><input type="text" id="e-card3-title" placeholder="Data Analytics"/></div>
+        </div>
+        <div class="form-group"><label>Kartu 3 — Tools</label><input type="text" id="e-card3-desc" placeholder="Python · SQL · Tableau · Power BI"/></div>
+      </div>
+
+      <div class="edit-section full-width" style="text-align:center;padding:24px">
+        <button class="btn-primary btn-large" onclick="saveProfile()">💾 Simpan Semua Perubahan</button>
+        <button class="btn-outline" onclick="showPage('home')" style="margin-left:12px">Kembali</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <p>© 2026 · Dibuat dengan ❤️ untuk portofolio pribadi</p>
+</footer>
+
+<!-- ===== MODALS ===== -->
+<div class="modal-overlay" id="modal-project">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Tambah Proyek</h3>
+      <button class="modal-close" onclick="closeModal('modal-project')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Nama Proyek *</label><input type="text" id="proj-title" placeholder="Nama proyek"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Kategori *</label>
+          <select id="proj-cat">
+            <option value="UI/UX">UI/UX Design</option>
+            <option value="Web">Web Development</option>
+            <option value="Data">Data Analytics</option>
+            <option value="Mobile">Mobile App</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Status</label>
+          <select id="proj-status">
+            <option value="Selesai">Selesai</option>
+            <option value="On Going">On Going</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Deskripsi *</label><textarea id="proj-desc" rows="3" placeholder="Jelaskan proyek Anda..."></textarea></div>
+      <div class="form-group"><label>Tools (pisahkan koma)</label><input type="text" id="proj-tools" placeholder="Figma, React, Python"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Link Live Demo</label><input type="url" id="proj-demo" placeholder="https://..."/></div>
+        <div class="form-group"><label>Link Repo/Figma</label><input type="url" id="proj-repo" placeholder="https://..."/></div>
+      </div>
+      <div class="form-group"><label>Hasil / Impact</label><input type="text" id="proj-impact" placeholder="Contoh: Konversi meningkat 34%"/></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-project')">Batal</button>
+      <button class="btn-primary" onclick="saveProject()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-skill">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Tambah Keahlian</h3>
+      <button class="modal-close" onclick="closeModal('modal-skill')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Nama Keahlian *</label><input type="text" id="skill-name" placeholder="React, Figma, Python..."/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Kategori *</label>
+          <select id="skill-cat">
+            <option>UI/UX Design</option>
+            <option>Web Development</option>
+            <option>Data Analytics</option>
+            <option>Tools</option>
+            <option>Soft Skills</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Level (1–100) *</label><input type="number" id="skill-level" min="1" max="100" placeholder="85"/></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-skill')">Batal</button>
+      <button class="btn-primary" onclick="saveSkill()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-exp">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Tambah Pengalaman</h3>
+      <button class="modal-close" onclick="closeModal('modal-exp')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Tipe</label>
+        <select id="exp-type">
+          <option value="work">💼 Pekerjaan</option>
+          <option value="edu">🎓 Pendidikan</option>
+          <option value="cert">🏆 Sertifikasi</option>
+          <option value="org">👥 Organisasi</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Judul / Posisi *</label><input type="text" id="exp-title" placeholder="UI/UX Designer"/></div>
+      <div class="form-group"><label>Instansi / Perusahaan *</label><input type="text" id="exp-company" placeholder="Nama perusahaan"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Mulai</label><input type="text" id="exp-start" placeholder="Jan 2023"/></div>
+        <div class="form-group"><label>Selesai</label><input type="text" id="exp-end" placeholder="Des 2024 / Sekarang"/></div>
+      </div>
+      <div class="form-group"><label>Deskripsi</label><textarea id="exp-desc" rows="3" placeholder="Tanggung jawab dan pencapaian..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-exp')">Batal</button>
+      <button class="btn-primary" onclick="saveExp()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal modal-large">
+    <div class="modal-header">
+      <h3 id="detail-title">Detail Proyek</h3>
+      <button class="modal-close" onclick="closeModal('modal-detail')">✕</button>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="modal-login">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <h3>🔒 Login Admin</h3>
+      <button class="modal-close" onclick="closeModal('modal-login')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.88rem;color:var(--mist);margin-bottom:20px;line-height:1.7">
+        Masukkan password admin untuk mengedit konten portfolio. Pengunjung biasa (rekruter) tidak perlu login.
+      </p>
+      <div class="form-group">
+        <label>Password Admin</label>
+        <input type="password" id="login-pw" placeholder="Masukkan password" onkeypress="if(event.key==='Enter') tryLogin()"/>
+      </div>
+      <p style="font-size:0.78rem;color:var(--mist);margin-top:8px;font-style:italic">
+        💡 Password default: <code style="background:var(--cream);padding:2px 8px;border-radius:4px">admin123</code> — bisa diganti di file app.js (cari variabel <code style="background:var(--cream);padding:2px 8px;border-radius:4px">ADMIN_PASSWORD</code>)
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-login')">Batal</button>
+      <button class="btn-primary" onclick="tryLogin()">Login</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Supabase JS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ============================================================
+// SUPABASE CONFIG
+// ⚠️ GANTI DUA VARIABEL DI BAWAH DENGAN MILIK ANDA
+// ============================================================
+
+const SUPABASE_URL = 'https://fyfqacozrinemnekpfmj.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_kPGzQmyIRI60T0Ch9h8bOQ_V5Tbgtkq';
+
+// Initialize Supabase client
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+</script>
+<script>
+/* ============================================================
+   PORTFOLIO — SUPABASE INTEGRATION
+   ============================================================ */
+
+const STATE = {
+  profile: {
+    name: '', role: '', bio: '', about: '', what: '',
+    loc: '', birth: '', edu: '', job: '',
+    status: 'Tersedia untuk proyek baru',
+    photo_url: '',
+    line1: 'Desainer &', line2: 'Developer',
+    line3: 'yang Bercerita', line4: 'lewat Data.',
+    email: '', linkedin: '', github: '', figma: '', wa: '', web: '',
+    card1: { icon: '🎨', title: 'UI/UX Design', desc: 'Figma · Prototyping · User Research' },
+    card2: { icon: '💻', title: 'Web Development', desc: 'HTML · CSS · JavaScript · React' },
+    card3: { icon: '📊', title: 'Data Analytics', desc: 'Python · SQL · Tableau · Power BI' }
+  },
+  projects: [], skills: [], experience: [], documents: [],
+  pendingPhoto: null
+};
+
+let currentFilter = 'all';
+
+// ============================================================
+// AUTHENTICATION
+// ============================================================
+function isAdmin() {
+  return sessionStorage.getItem('portfolio_admin') === 'true';
+}
+
+function setAdminMode(isOn) {
+  if (isOn) {
+    sessionStorage.setItem('portfolio_admin', 'true');
+    document.body.classList.add('admin-mode');
+  } else {
+    sessionStorage.removeItem('portfolio_admin');
+    document.body.classList.remove('admin-mode');
+  }
+  const viewBadge = document.getElementById('view-badge');
+  const adminBadge = document.getElementById('admin-badge');
+  if (viewBadge && adminBadge) {
+    viewBadge.style.display = isOn ? 'none' : 'flex';
+    adminBadge.style.display = isOn ? 'flex' : 'none';
+  }
+}
+
+function openLoginModal() {
+  const modalBody = document.querySelector('#modal-login .modal-body');
+  if (!document.getElementById('login-email')) {
+    modalBody.innerHTML = `
+      <p style="font-size:0.88rem;color:var(--mist);margin-bottom:20px;line-height:1.7">
+        Masukkan email & password admin untuk mengedit konten portfolio.
+      </p>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="email@gmail.com"/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-pw" placeholder="Password" onkeypress="if(event.key==='Enter') tryLogin()"/>
+      </div>
+    `;
+  } else {
+    document.getElementById('login-email').value = '';
+    document.getElementById('login-pw').value = '';
+  }
+  openModal('modal-login');
+  setTimeout(() => document.getElementById('login-email').focus(), 100);
+}
+
+async function tryLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pw = document.getElementById('login-pw').value;
+  if (!email || !pw) { showToast('Email dan password wajib diisi.', 'error'); return; }
+
+  showToast('⏳ Login...', '');
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pw });
+    if (error) throw error;
+    setAdminMode(true);
+    closeModal('modal-login');
+    showToast('✓ Login berhasil! Mode Admin aktif.', 'success');
+    const activePage = document.querySelector('.page.active');
+    if (activePage) showPage(activePage.id.replace('page-', ''));
+  } catch (err) {
+    showToast('❌ Login gagal: ' + (err.message || 'Email/password salah'), 'error');
+  }
+}
+
+async function logoutAdmin() {
+  if (window.confirm && !confirm('Keluar dari Mode Admin?')) return;
+  try { await supabaseClient.auth.signOut(); } catch(e) {}
+  setAdminMode(false);
+  const activePage = document.querySelector('.page.active');
+  if (activePage) {
+    let pageId = activePage.id.replace('page-', '');
+    if (pageId === 'edit') pageId = 'home';
+    showPage(pageId);
+  }
+  showToast('✓ Logout berhasil', 'success');
+}
+
+function requireAdmin() {
+  if (!isAdmin()) {
+    showToast('Login admin terlebih dahulu.', 'error');
+    openLoginModal();
+    return false;
+  }
+  return true;
+}
+
+// ============================================================
+// LOAD DATA FROM SUPABASE
+// ============================================================
+async function loadAllData() {
+  try {
+    const { data: profileData } = await supabaseClient.from('profile').select('*').eq('id', 1).single();
+    if (profileData) {
+      Object.assign(STATE.profile, {
+        name: profileData.name || '', role: profileData.role || '',
+        bio: profileData.bio || '', about: profileData.about || '',
+        what: profileData.what || '', loc: profileData.loc || '',
+        birth: profileData.birth || '', edu: profileData.edu || '',
+        job: profileData.job || '', status: profileData.status || 'Tersedia untuk proyek baru',
+        photo_url: profileData.photo_url || '',
+        line1: profileData.line1 || 'Desainer &', line2: profileData.line2 || 'Developer',
+        line3: profileData.line3 || 'yang Bercerita', line4: profileData.line4 || 'lewat Data.',
+        email: profileData.email || '', linkedin: profileData.linkedin || '',
+        github: profileData.github || '', figma: profileData.figma || '',
+        wa: profileData.wa || '', web: profileData.web || '',
+        card1: profileData.card1 || STATE.profile.card1,
+        card2: profileData.card2 || STATE.profile.card2,
+        card3: profileData.card3 || STATE.profile.card3
+      });
+    }
+
+    const { data: projData } = await supabaseClient.from('projects').select('*').order('created_at', { ascending: false });
+    STATE.projects = (projData || []).map(p => ({
+      id: p.id, title: p.title, cat: p.cat, status: p.status,
+      desc: p.description, tools: p.tools || [],
+      demo: p.demo_url, repo: p.repo_url, impact: p.impact
+    }));
+
+    const { data: skillData } = await supabaseClient.from('skills').select('*').order('created_at', { ascending: true });
+    STATE.skills = (skillData || []).map(s => ({ id: s.id, name: s.name, cat: s.category, level: s.level }));
+
+    const { data: expData } = await supabaseClient.from('experience').select('*').order('created_at', { ascending: false });
+    STATE.experience = (expData || []).map(e => ({
+      id: e.id, type: e.type, title: e.title, company: e.company,
+      start: e.start_date, end: e.end_date, desc: e.description
+    }));
+
+    const { data: docData } = await supabaseClient.from('documents').select('*').order('uploaded_at', { ascending: false });
+    STATE.documents = (docData || []).map(d => ({
+      id: d.id, name: d.name, url: d.file_url, type: d.file_type, size: d.size_bytes
+    }));
+  } catch (err) {
+    console.error('Load error:', err);
+    showToast('⚠️ Gagal memuat data dari server.', 'error');
+  }
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(pageId) {
+  if (pageId === 'edit' && !isAdmin()) { openLoginModal(); return; }
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const page = document.getElementById('page-' + pageId);
+  if (page) page.classList.add('active');
+  const link = document.querySelector(`.nav-links a[data-page="${pageId}"]`);
+  if (link) link.classList.add('active');
+  document.querySelector('.nav-links').classList.remove('open');
+
+  if (pageId === 'home') renderHome();
+  if (pageId === 'about') renderAbout();
+  if (pageId === 'projects') renderProjects();
+  if (pageId === 'skills') renderSkills();
+  if (pageId === 'experience') renderExperience();
+  if (pageId === 'documents') renderDocuments();
+  if (pageId === 'contact') renderContact();
+  if (pageId === 'edit') populateEditForm();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleMobileMenu() {
+  document.querySelector('.nav-links').classList.toggle('open');
+}
+
+// ============================================================
+// RENDER HOME
+// ============================================================
+function renderHome() {
+  const p = STATE.profile;
+  document.getElementById('page-title').textContent = p.name ? `${p.name} — Portofolio` : 'Portofolio';
+  if (p.name) document.getElementById('nav-name-text').textContent = p.name.split(' ')[0];
+
+  setText('h-status', p.status);
+  setText('h-line1', p.line1); setText('h-line2', p.line2);
+  setText('h-line3', p.line3); setText('h-line4', p.line4);
+  setText('h-desc', p.bio || 'Saya menggabungkan UI/UX design, web development, dan data analytics untuk menciptakan pengalaman digital yang bermakna dan berbasis insight.');
+
+  renderHeroCards();
+
+  setText('st-proj', STATE.projects.length);
+  setText('st-skills', STATE.skills.length);
+  setText('st-exp', STATE.experience.filter(e => e.type === 'work').length);
+  setText('st-docs', STATE.documents.length);
+}
+
+function renderHeroCards() {
+  const container = document.getElementById('hero-skill-cards');
+  if (!container) return;
+  const p = STATE.profile;
+  const cards = [p.card1, p.card2, p.card3].filter(c => c && c.title);
+  const classes = ['ui', 'web', 'da'];
+  container.innerHTML = cards.map((c, i) => `
+    <div class="hero-card">
+      <div class="card-icon ${classes[i] || 'ui'}">${c.icon || '✨'}</div>
+      <div class="card-info">
+        <h3>${escapeHtml(c.title)}</h3>
+        <p>${escapeHtml(c.desc || '')}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// RENDER ABOUT
+// ============================================================
+function renderAbout() {
+  const p = STATE.profile;
+  const img = document.getElementById('a-photo');
+  const placeholder = document.getElementById('a-placeholder');
+  if (p.photo_url) {
+    img.src = p.photo_url;
+    img.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover';
+    placeholder.style.display = 'none';
+  } else {
+    img.style.display = 'none';
+    placeholder.style.display = 'flex';
+  }
+  setText('a-name', p.name || '—');
+  setText('a-loc', p.loc || '—');
+  setText('a-birth', p.birth || '—');
+  setText('a-edu', p.edu || '—');
+  setText('a-job', p.job || '—');
+  setText('a-bio', p.about || 'Bio Anda akan muncul di sini setelah mengisi profil.');
+  setText('a-what', p.what || 'Deskripsi bidang pekerjaan dan kegiatan Anda.');
+}
+
+// ============================================================
+// PROJECTS
+// ============================================================
+function renderProjects() {
+  const grid = document.getElementById('projects-grid');
+  const empty = document.getElementById('proj-empty');
+  const filterRow = document.getElementById('proj-filters');
+
+  const cats = ['all', ...new Set(STATE.projects.map(p => p.cat))];
+  filterRow.innerHTML = cats.map(c => `
+    <button class="filter-btn ${currentFilter === c ? 'active' : ''}" onclick="filterProjects('${c}', this)">
+      ${c === 'all' ? 'Semua' : c}
+    </button>
+  `).join('');
+
+  grid.querySelectorAll('.proj-card').forEach(el => el.remove());
+  const filtered = currentFilter === 'all' ? STATE.projects : STATE.projects.filter(p => p.cat === currentFilter);
+
+  if (filtered.length === 0) { empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  filtered.forEach(proj => {
+    const realIndex = STATE.projects.indexOf(proj);
+    grid.appendChild(createProjectCard(proj, realIndex));
+  });
+}
+
+function createProjectCard(proj, index) {
+  const thumbEmojis = { 'UI/UX': '🎨', 'Web': '💻', 'Data': '📊', 'Mobile': '📱', 'Lainnya': '📁' };
+  const thumbClass = {
+    'UI/UX': 'proj-thumb-uiux', 'Web': 'proj-thumb-web', 'Data': 'proj-thumb-data',
+    'Mobile': 'proj-thumb-mobile', 'Lainnya': 'proj-thumb-lainnya'
+  };
+  const emoji = thumbEmojis[proj.cat] || '📁';
+  const cls = thumbClass[proj.cat] || 'proj-thumb-lainnya';
+
+  const card = document.createElement('div');
+  card.className = 'proj-card';
+  card.onclick = () => openProjectDetail(index);
+  card.innerHTML = `
+    <div class="proj-thumb ${cls}">
+      ${emoji}
+      <span class="proj-badge">${escapeHtml(proj.cat)}</span>
+      <span class="proj-status-badge ${proj.status === 'Selesai' ? 'status-done' : 'status-ongoing'}">${escapeHtml(proj.status)}</span>
+    </div>
+    <div class="proj-body">
+      <h3>${escapeHtml(proj.title)}</h3>
+      <p>${escapeHtml(proj.desc || '')}</p>
+      <div class="proj-tools-row">
+        ${(proj.tools || []).map(t => `<span class="proj-tool-tag">${escapeHtml(t)}</span>`).join('')}
+      </div>
+      <div class="proj-footer">
+        <span class="proj-impact">${proj.impact ? '✓ ' + escapeHtml(proj.impact) : ''}</span>
+        <div class="proj-links" onclick="event.stopPropagation()">
+          ${proj.demo ? `<a href="${escapeHtml(proj.demo)}" target="_blank" class="proj-link-btn">Demo ↗</a>` : ''}
+          ${proj.repo ? `<a href="${escapeHtml(proj.repo)}" target="_blank" class="proj-link-btn">Repo ↗</a>` : ''}
+          <button class="proj-delete-btn" onclick="event.stopPropagation();deleteProject(${proj.id})">🗑</button>
+        </div>
+      </div>
+    </div>
+  `;
+  return card;
+}
+
+function filterProjects(cat, btn) { currentFilter = cat; renderProjects(); }
+
+function openAddProject() {
+  if (!requireAdmin()) return;
+  ['proj-title','proj-desc','proj-tools','proj-demo','proj-repo','proj-impact'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('proj-cat').value = 'UI/UX';
+  document.getElementById('proj-status').value = 'Selesai';
+  openModal('modal-project');
+}
+
+async function saveProject() {
+  const title = document.getElementById('proj-title').value.trim();
+  const desc = document.getElementById('proj-desc').value.trim();
+  if (!title || !desc) { showToast('Nama proyek dan deskripsi wajib diisi.', 'error'); return; }
+
+  const toolsRaw = document.getElementById('proj-tools').value;
+  const tools = toolsRaw ? toolsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+  showToast('⏳ Menyimpan...', '');
+  try {
+    const { error } = await supabaseClient.from('projects').insert({
+      title, cat: document.getElementById('proj-cat').value,
+      status: document.getElementById('proj-status').value,
+      description: desc, tools,
+      demo_url: document.getElementById('proj-demo').value.trim(),
+      repo_url: document.getElementById('proj-repo').value.trim(),
+      impact: document.getElementById('proj-impact').value.trim()
+    });
+    if (error) throw error;
+    await loadAllData();
+    closeModal('modal-project');
+    renderProjects(); renderHome();
+    showToast('✓ Proyek berhasil disimpan', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+async function deleteProject(id) {
+  if (!confirm('Hapus proyek ini?')) return;
+  try {
+    const { error } = await supabaseClient.from('projects').delete().eq('id', id);
+    if (error) throw error;
+    await loadAllData();
+    renderProjects(); renderHome();
+    showToast('✓ Proyek dihapus', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+function openProjectDetail(index) {
+  const p = STATE.projects[index];
+  if (!p) return;
+  document.getElementById('detail-title').textContent = p.title;
+  document.getElementById('detail-body').innerHTML = `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+      <span style="background:var(--sand);padding:5px 14px;border-radius:100px;font-size:0.78rem;font-weight:600">${escapeHtml(p.cat)}</span>
+      <span style="padding:5px 14px;border-radius:100px;font-size:0.78rem;font-weight:600;${p.status === 'Selesai' ? 'background:rgba(61,90,71,0.15);color:var(--forest)' : 'background:rgba(192,113,79,0.15);color:var(--terracotta)'}">${escapeHtml(p.status)}</span>
+    </div>
+    <p style="font-size:0.95rem;line-height:1.85;color:var(--mist);margin-bottom:22px">${escapeHtml(p.desc || '')}</p>
+    ${p.impact ? `<div style="background:rgba(61,90,71,0.08);border:1px solid rgba(61,90,71,0.2);border-radius:12px;padding:16px;margin-bottom:22px;font-size:0.9rem;color:var(--forest);font-weight:600">✓ ${escapeHtml(p.impact)}</div>` : ''}
+    ${p.tools?.length ? `<div style="margin-bottom:24px"><div style="font-size:0.75rem;font-weight:600;color:var(--mist);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px">Tools</div><div style="display:flex;flex-wrap:wrap;gap:8px">${p.tools.map(t=>`<span style="padding:6px 14px;background:var(--cream);border-radius:100px;font-size:0.82rem;font-weight:500">${escapeHtml(t)}</span>`).join('')}</div></div>` : ''}
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      ${p.demo ? `<a href="${escapeHtml(p.demo)}" target="_blank" class="btn-primary" style="font-size:0.85rem">🔗 Live Demo ↗</a>` : ''}
+      ${p.repo ? `<a href="${escapeHtml(p.repo)}" target="_blank" class="btn-outline" style="font-size:0.85rem">📂 Repository ↗</a>` : ''}
+    </div>
+  `;
+  openModal('modal-detail');
+}
+
+// ============================================================
+// SKILLS
+// ============================================================
+function renderSkills() {
+  const container = document.getElementById('skills-container');
+  const empty = document.getElementById('skills-empty');
+  container.querySelectorAll('.skill-category-block').forEach(el => el.remove());
+
+  if (STATE.skills.length === 0) { empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  const grouped = {};
+  STATE.skills.forEach(s => { if (!grouped[s.cat]) grouped[s.cat] = []; grouped[s.cat].push(s); });
+
+  Object.entries(grouped).forEach(([cat, items]) => {
+    const block = document.createElement('div');
+    block.className = 'skill-category-block';
+    block.innerHTML = `
+      <div class="skill-cat-title">${escapeHtml(cat)}</div>
+      <div class="skill-items">
+        ${items.map(s => `
+          <div class="skill-item">
+            <div class="skill-item-top">
+              <span class="skill-item-name">${escapeHtml(s.name)}</span>
+              <div style="display:flex;align-items:center">
+                <span class="skill-item-level">${s.level}%</span>
+                <button class="skill-del-btn" onclick="deleteSkill(${s.id})">🗑</button>
+              </div>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:${s.level}%"></div></div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(block);
+  });
+}
+
+function openAddSkill() {
+  if (!requireAdmin()) return;
+  document.getElementById('skill-name').value = '';
+  document.getElementById('skill-level').value = '';
+  openModal('modal-skill');
+}
+
+async function saveSkill() {
+  const name = document.getElementById('skill-name').value.trim();
+  const level = parseInt(document.getElementById('skill-level').value);
+  const cat = document.getElementById('skill-cat').value;
+  if (!name) { showToast('Nama keahlian wajib diisi.', 'error'); return; }
+  if (!level || level < 1 || level > 100) { showToast('Level 1-100.', 'error'); return; }
+
+  showToast('⏳ Menyimpan...', '');
+  try {
+    const { error } = await supabaseClient.from('skills').insert({ name, category: cat, level });
+    if (error) throw error;
+    await loadAllData();
+    closeModal('modal-skill');
+    renderSkills(); renderHome();
+    showToast('✓ Keahlian ditambahkan', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+async function deleteSkill(id) {
+  if (!confirm('Hapus keahlian ini?')) return;
+  try {
+    const { error } = await supabaseClient.from('skills').delete().eq('id', id);
+    if (error) throw error;
+    await loadAllData();
+    renderSkills(); renderHome();
+    showToast('✓ Keahlian dihapus', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+// ============================================================
+// EXPERIENCE
+// ============================================================
+function renderExperience() {
+  const container = document.getElementById('exp-container');
+  const empty = document.getElementById('exp-empty');
+  container.querySelectorAll('.exp-item').forEach(el => el.remove());
+
+  if (STATE.experience.length === 0) { empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  const typeLabels = { work: '💼 Pekerjaan', edu: '🎓 Pendidikan', cert: '🏆 Sertifikasi', org: '👥 Organisasi' };
+
+  STATE.experience.forEach(exp => {
+    const item = document.createElement('div');
+    item.className = 'exp-item ' + (exp.type || 'work');
+    item.innerHTML = `
+      <div class="exp-card">
+        <div class="exp-card-type">${typeLabels[exp.type] || '💼 Pekerjaan'}</div>
+        <div class="exp-card-header">
+          <div class="exp-card-title">${escapeHtml(exp.title)}</div>
+          <div class="exp-card-period">${escapeHtml(exp.start || '')}${exp.end ? ' – ' + escapeHtml(exp.end) : ''}</div>
+        </div>
+        <div class="exp-card-company">${escapeHtml(exp.company)}</div>
+        ${exp.desc ? `<div class="exp-card-desc">${escapeHtml(exp.desc)}</div>` : ''}
+        <div class="exp-card-actions">
+          <button class="exp-del-btn" onclick="deleteExp(${exp.id})">🗑 Hapus</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+function openAddExp() {
+  if (!requireAdmin()) return;
+  ['exp-title','exp-company','exp-start','exp-end','exp-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('exp-type').value = 'work';
+  openModal('modal-exp');
+}
+
+async function saveExp() {
+  const title = document.getElementById('exp-title').value.trim();
+  const company = document.getElementById('exp-company').value.trim();
+  if (!title || !company) { showToast('Judul dan instansi wajib.', 'error'); return; }
+
+  showToast('⏳ Menyimpan...', '');
+  try {
+    const { error } = await supabaseClient.from('experience').insert({
+      type: document.getElementById('exp-type').value,
+      title, company,
+      start_date: document.getElementById('exp-start').value.trim(),
+      end_date: document.getElementById('exp-end').value.trim(),
+      description: document.getElementById('exp-desc').value.trim()
+    });
+    if (error) throw error;
+    await loadAllData();
+    closeModal('modal-exp');
+    renderExperience(); renderHome();
+    showToast('✓ Pengalaman ditambahkan', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+async function deleteExp(id) {
+  if (!confirm('Hapus pengalaman ini?')) return;
+  try {
+    const { error } = await supabaseClient.from('experience').delete().eq('id', id);
+    if (error) throw error;
+    await loadAllData();
+    renderExperience(); renderHome();
+    showToast('✓ Dihapus', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+// ============================================================
+// DOCUMENTS
+// ============================================================
+function handleFileUpload(e) { processFiles(Array.from(e.target.files)); e.target.value = ''; }
+function dragOver(e) { e.preventDefault(); document.getElementById('upload-zone').classList.add('dragover'); }
+function dragLeave(e) { document.getElementById('upload-zone').classList.remove('dragover'); }
+function dropFile(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('dragover');
+  if (!isAdmin()) { showToast('Login admin untuk upload.', 'error'); return; }
+  processFiles(Array.from(e.dataTransfer.files));
+}
+
+async function processFiles(files) {
+  if (!requireAdmin()) return;
+  const maxSize = 50 * 1024 * 1024;
+  let added = 0, failed = 0;
+
+  for (const file of files) {
+    if (file.size > maxSize) { showToast(`${file.name} terlalu besar (max 50MB)`, 'error'); continue; }
+    showToast(`⏳ Upload ${file.name}...`, '');
+
+    try {
+      const ext = file.name.split('.').pop();
+      const baseName = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9-_]/g, '_');
+      const fileName = `${Date.now()}_${baseName}.${ext}`;
+
+      const { error: uploadError } = await supabaseClient.storage
+        .from('portfolio-files').upload(fileName, file, { upsert: false });
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabaseClient.storage
+        .from('portfolio-files').getPublicUrl(fileName);
+
+      const { error: dbError } = await supabaseClient.from('documents').insert({
+        name: file.name, file_url: publicUrl,
+        file_type: getDocType(file.name), size_bytes: file.size
+      });
+      if (dbError) throw dbError;
+      added++;
+    } catch (err) { console.error(err); failed++; }
+  }
+
+  await loadAllData();
+  renderDocuments(); renderHome();
+  if (added > 0) showToast(`✓ ${added} file diupload`, 'success');
+  if (failed > 0) showToast(`❌ ${failed} file gagal`, 'error');
+}
+
+function getDocType(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  if (['pdf'].includes(ext)) return 'pdf';
+  if (['doc','docx'].includes(ext)) return 'doc';
+  if (['jpg','jpeg','png','gif','webp'].includes(ext)) return 'img';
+  return 'file';
+}
+
+function getDocIcon(type) {
+  return { pdf: '📄', doc: '📝', img: '🖼️', file: '📁' }[type] || '📁';
+}
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/(1024*1024)).toFixed(1) + ' MB';
+}
+
+function renderDocuments() {
+  const grid = document.getElementById('docs-grid');
+  const empty = document.getElementById('docs-empty');
+  grid.querySelectorAll('.doc-card').forEach(el => el.remove());
+
+  if (STATE.documents.length === 0) { empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+
+  STATE.documents.forEach(doc => {
+    const card = document.createElement('div');
+    card.className = 'doc-card';
+    card.innerHTML = `
+      <div class="doc-icon">${getDocIcon(doc.type)}</div>
+      <div class="doc-name">${escapeHtml(doc.name)}</div>
+      <div class="doc-meta">${formatSize(doc.size || 0)}</div>
+      <div class="doc-actions">
+        <a href="${escapeHtml(doc.url)}" target="_blank" download="${escapeHtml(doc.name)}" class="doc-btn">⬇ Download</a>
+        <button class="doc-btn danger" onclick="deleteDoc(${doc.id}, '${escapeHtml(doc.url)}')">🗑</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+async function deleteDoc(id, url) {
+  if (!confirm('Hapus dokumen ini?')) return;
+  try {
+    const urlParts = url.split('/');
+    const fileName = urlParts[urlParts.length - 1];
+    await supabaseClient.storage.from('portfolio-files').remove([fileName]);
+    const { error } = await supabaseClient.from('documents').delete().eq('id', id);
+    if (error) throw error;
+    await loadAllData();
+    renderDocuments(); renderHome();
+    showToast('✓ Dokumen dihapus', 'success');
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+// ============================================================
+// CONTACT
+// ============================================================
+function renderContact() {
+  const p = STATE.profile;
+  const c = document.getElementById('contact-link-list');
+  const links = [];
+  if (p.email) links.push({ href: `mailto:${p.email}`, icon: '✉️', label: 'Email', sub: p.email });
+  if (p.linkedin) links.push({ href: p.linkedin, icon: '💼', label: 'LinkedIn', sub: 'Profil profesional' });
+  if (p.github) links.push({ href: p.github, icon: '🐙', label: 'GitHub', sub: 'Source code' });
+  if (p.figma) links.push({ href: p.figma, icon: '🎨', label: 'Figma', sub: 'Karya desain' });
+  if (p.wa) links.push({ href: `https://wa.me/${p.wa}`, icon: '📱', label: 'WhatsApp', sub: 'Chat langsung' });
+  if (p.web) links.push({ href: p.web, icon: '🌐', label: 'Website', sub: p.web });
+
+  if (links.length === 0) {
+    c.innerHTML = '<p style="color:var(--mist);font-size:0.9rem;font-style:italic">Belum ada tautan.</p>';
+    return;
+  }
+  c.innerHTML = links.map(l => `
+    <a href="${escapeHtml(l.href)}" target="_blank" rel="noopener" class="contact-link-item">
+      <span class="cli-icon">${l.icon}</span>
+      <div style="flex:1"><div>${l.label}</div><div class="cli-sub">${escapeHtml(l.sub)}</div></div>
+      <span style="color:var(--clay)">→</span>
+    </a>
+  `).join('');
+}
+
+function submitForm(event) {
+  event.preventDefault();
+  const data = Object.fromEntries(new FormData(event.target));
+  const p = STATE.profile;
+  if (!p.email) { showToast('Email pemilik belum diisi.', 'error'); return; }
+  const subject = encodeURIComponent(`[Portofolio] ${data.subject} dari ${data.name}`);
+  const body = encodeURIComponent(`Nama: ${data.name}\nEmail: ${data.email}\n\nPesan:\n${data.message}`);
+  window.open(`mailto:${p.email}?subject=${subject}&body=${body}`);
+  showToast('✓ Email client dibuka', 'success');
+  event.target.reset();
+}
+
+// ============================================================
+// EDIT PROFILE
+// ============================================================
+function populateEditForm() {
+  const p = STATE.profile;
+  setVal('e-name', p.name); setVal('e-role', p.role); setVal('e-loc', p.loc);
+  setVal('e-birth', p.birth); setVal('e-edu', p.edu); setVal('e-job', p.job);
+  setVal('e-status', p.status);
+  setVal('e-line1', p.line1); setVal('e-line2', p.line2);
+  setVal('e-line3', p.line3); setVal('e-line4', p.line4);
+  setVal('e-bio', p.bio); setVal('e-about', p.about); setVal('e-what', p.what);
+  setVal('e-email', p.email); setVal('e-linkedin', p.linkedin);
+  setVal('e-github', p.github); setVal('e-figma', p.figma);
+  setVal('e-wa', p.wa); setVal('e-web', p.web);
+  setVal('e-card1-icon', p.card1?.icon); setVal('e-card1-title', p.card1?.title); setVal('e-card1-desc', p.card1?.desc);
+  setVal('e-card2-icon', p.card2?.icon); setVal('e-card2-title', p.card2?.title); setVal('e-card2-desc', p.card2?.desc);
+  setVal('e-card3-icon', p.card3?.icon); setVal('e-card3-title', p.card3?.title); setVal('e-card3-desc', p.card3?.desc);
+
+  STATE.pendingPhoto = null;
+  if (p.photo_url) {
+    const preview = document.getElementById('edit-photo-preview');
+    const placeholder = document.getElementById('edit-photo-placeholder');
+    preview.src = p.photo_url;
+    preview.style.display = 'block';
+    placeholder.style.display = 'none';
+  }
+}
+
+function handlePhotoUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { showToast('Foto maks. 5MB', 'error'); return; }
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const preview = document.getElementById('edit-photo-preview');
+    const placeholder = document.getElementById('edit-photo-placeholder');
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+    placeholder.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+  STATE.pendingPhoto = file;
+  showToast('📷 Foto akan diupload saat Simpan', '');
+}
+
+async function saveProfile() {
+  if (!requireAdmin()) return;
+  showToast('⏳ Menyimpan profil...', '');
+
+  let photoUrl = STATE.profile.photo_url;
+
+  if (STATE.pendingPhoto) {
+    try {
+      const file = STATE.pendingPhoto;
+      const ext = file.name.split('.').pop();
+      const fileName = `profile_${Date.now()}.${ext}`;
+      const { error: uploadError } = await supabaseClient.storage
+        .from('portfolio-files').upload(fileName, file, { upsert: true });
+      if (uploadError) throw uploadError;
+      const { data: { publicUrl } } = supabaseClient.storage
+        .from('portfolio-files').getPublicUrl(fileName);
+      photoUrl = publicUrl;
+      STATE.pendingPhoto = null;
+    } catch (err) { showToast('❌ Upload foto gagal: ' + err.message, 'error'); return; }
+  }
+
+  const profileData = {
+    id: 1,
+    name: getVal('e-name'), role: getVal('e-role'), loc: getVal('e-loc'),
+    birth: getVal('e-birth'), edu: getVal('e-edu'), job: getVal('e-job'),
+    status: getVal('e-status'),
+    line1: getVal('e-line1') || 'Desainer &',
+    line2: getVal('e-line2') || 'Developer',
+    line3: getVal('e-line3') || 'yang Bercerita',
+    line4: getVal('e-line4') || 'lewat Data.',
+    bio: getVal('e-bio'), about: getVal('e-about'), what: getVal('e-what'),
+    email: getVal('e-email'), linkedin: getVal('e-linkedin'),
+    github: getVal('e-github'), figma: getVal('e-figma'),
+    wa: getVal('e-wa'), web: getVal('e-web'),
+    photo_url: photoUrl,
+    card1: { icon: getVal('e-card1-icon') || '🎨', title: getVal('e-card1-title') || 'UI/UX Design', desc: getVal('e-card1-desc') },
+    card2: { icon: getVal('e-card2-icon') || '💻', title: getVal('e-card2-title') || 'Web Development', desc: getVal('e-card2-desc') },
+    card3: { icon: getVal('e-card3-icon') || '📊', title: getVal('e-card3-title') || 'Data Analytics', desc: getVal('e-card3-desc') },
+    updated_at: new Date().toISOString()
+  };
+
+  try {
+    const { error } = await supabaseClient.from('profile').upsert(profileData, { onConflict: 'id' });
+    if (error) throw error;
+    await loadAllData();
+    showToast('✓ Profil tersimpan', 'success');
+    setTimeout(() => showPage('home'), 700);
+  } catch (err) { showToast('❌ Gagal: ' + err.message, 'error'); }
+}
+
+// ============================================================
+// MODALS & HELPERS
+// ============================================================
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', function(e) {
+    if (e.target === this) closeModal(this.id);
+  });
+});
+
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+function setText(id, text) { const el = document.getElementById(id); if (el) el.textContent = text; }
+function setVal(id, val) { const el = document.getElementById(id); if (el) el.value = val || ''; }
+function getVal(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function escapeHtml(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', async () => {
+  if (typeof SUPABASE_URL === 'undefined' || !SUPABASE_URL || SUPABASE_URL.includes('YOUR_')) {
+    alert('⚠️ Supabase belum dikonfigurasi!\n\nBuka file supabase-config.js dan isi URL & API Key Anda.');
+    return;
+  }
+
+  showToast('⏳ Memuat data...', '');
+
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (session) setAdminMode(true);
+
+  await loadAllData();
+  renderHome();
+  showToast('✓ Data dimuat', 'success');
+
+  supabaseClient.auth.onAuthStateChange((event) => {
+    if (event === 'SIGNED_IN') setAdminMode(true);
+    if (event === 'SIGNED_OUT') setAdminMode(false);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+  });
+});
+
+</script>
+</body>
+</html>

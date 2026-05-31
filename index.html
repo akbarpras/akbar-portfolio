@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="page-title">Portofolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- VIEW MODE BADGE -->
+<div class="view-mode-badge" id="view-badge">
+  <span class="vmb-icon">👁️</span>
+  <span class="vmb-text">Tampilan Pengunjung</span>
+  <button class="vmb-login-btn" onclick="openLoginModal()">🔒 Login Admin</button>
+</div>
+
+<!-- ADMIN BADGE (when logged in) -->
+<div class="admin-badge" id="admin-badge">
+  <span class="ab-icon">🔓</span>
+  <span class="ab-text">Mode Admin</span>
+  <button class="ab-logout-btn" onclick="logoutAdmin()">Logout</button>
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <span id="nav-name-text">Alex</span><span class="dot">.</span>
+  </div>
+  <ul class="nav-links">
+    <li><a data-page="home" onclick="showPage('home')" class="active">Home</a></li>
+    <li><a data-page="about" onclick="showPage('about')">Tentang</a></li>
+    <li><a data-page="projects" onclick="showPage('projects')">Proyek</a></li>
+    <li><a data-page="skills" onclick="showPage('skills')">Keahlian</a></li>
+    <li><a data-page="experience" onclick="showPage('experience')">Pengalaman</a></li>
+    <li><a data-page="documents" onclick="showPage('documents')">Dokumen</a></li>
+    <li><a data-page="contact" onclick="showPage('contact')">Kontak</a></li>
+  </ul>
+  <button class="nav-edit-btn admin-only" onclick="showPage('edit')">✎ Edit Profil</button>
+  <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+</nav>
+
+<main>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="dot-anim"></span>
+        <span id="h-status">Tersedia untuk proyek baru</span>
+      </div>
+      <h1 class="hero-h1">
+        <span id="h-line1">Desainer &</span><br>
+        <em id="h-line2">Developer</em><br>
+        <span id="h-line3">yang Bercerita</span><br>
+        <span id="h-line4">lewat Data.</span>
+      </h1>
+      <p class="hero-desc" id="h-desc">Saya menggabungkan UI/UX design, web development, dan data analytics untuk menciptakan pengalaman digital yang bermakna dan berbasis insight.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('projects')">Lihat Karya Saya</button>
+        <button class="btn-outline" onclick="showPage('contact')">Hubungi Saya</button>
+      </div>
+    </div>
+    <div class="hero-right" id="hero-skill-cards">
+      <!-- rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stat-item"><span class="num" id="st-proj">0</span><span class="label">Proyek Selesai</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="num" id="st-skills">0</span><span class="label">Keahlian</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="num" id="st-exp">0</span><span class="label">Pengalaman</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="num" id="st-docs">0</span><span class="label">Dokumen</span></div>
+  </div>
+
+  <!-- Quick Navigation Cards -->
+  <section class="home-nav-section">
+    <span class="section-label">Jelajahi</span>
+    <h2 class="section-title">Apa yang Bisa Anda Temukan</h2>
+    <div class="home-cards-grid">
+      <div class="home-nav-card" onclick="showPage('about')">
+        <div class="hnc-icon">👤</div>
+        <h3>Tentang Saya</h3>
+        <p>Kenali saya lebih dekat — latar belakang, bidang pekerjaan, dan apa yang saya lakukan sehari-hari.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('projects')">
+        <div class="hnc-icon">💼</div>
+        <h3>Proyek Saya</h3>
+        <p>Kumpulan karya terbaik dari UI/UX design, web development, hingga data analytics.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('skills')">
+        <div class="hnc-icon">🛠️</div>
+        <h3>Keahlian</h3>
+        <p>Tools dan teknologi yang saya kuasai untuk membangun produk digital berkualitas.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('experience')">
+        <div class="hnc-icon">📜</div>
+        <h3>Pengalaman</h3>
+        <p>Perjalanan karir, pendidikan, dan sertifikasi yang telah saya tempuh.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('documents')">
+        <div class="hnc-icon">📄</div>
+        <h3>Dokumen</h3>
+        <p>CV, sertifikat, dan berkas pendukung lainnya yang bisa Anda lihat dan unduh.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+      <div class="home-nav-card" onclick="showPage('contact')">
+        <div class="hnc-icon">📬</div>
+        <h3>Kontak</h3>
+        <p>Mari berkolaborasi! Hubungi saya melalui platform pilihan Anda.</p>
+        <span class="hnc-arrow">→</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div class="page" id="page-about">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Tentang Saya</span>
+      <h2 class="section-title">Kenali Saya Lebih Dekat</h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-photo-side">
+        <div class="about-photo-frame">
+          <img id="a-photo" src="" alt="" style="display:none"/>
+          <div class="about-photo-placeholder" id="a-placeholder">👤</div>
+        </div>
+        <div class="about-info-card">
+          <div class="aic-row"><span class="aic-key">Nama</span><span class="aic-val" id="a-name">—</span></div>
+          <div class="aic-row"><span class="aic-key">Lokasi</span><span class="aic-val" id="a-loc">—</span></div>
+          <div class="aic-row"><span class="aic-key">Tanggal Lahir</span><span class="aic-val" id="a-birth">—</span></div>
+          <div class="aic-row"><span class="aic-key">Pendidikan</span><span class="aic-val" id="a-edu">—</span></div>
+          <div class="aic-row"><span class="aic-key">Pekerjaan</span><span class="aic-val" id="a-job">—</span></div>
+        </div>
+      </div>
+      <div class="about-text-side">
+        <h3 class="about-h3">Siapa Saya?</h3>
+        <p id="a-bio" class="about-paragraph">Bio Anda akan muncul di sini setelah mengisi profil di menu "Edit Profil".</p>
+        <h3 class="about-h3" style="margin-top:32px">Apa yang Saya Kerjakan?</h3>
+        <p id="a-what" class="about-paragraph">Deskripsi bidang pekerjaan dan kegiatan Anda.</p>
+        <div class="about-cta">
+          <button class="btn-primary" onclick="showPage('projects')">Lihat Proyek →</button>
+          <button class="btn-outline" onclick="showPage('documents')">Lihat Dokumen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PROJECTS PAGE ===== -->
+<div class="page" id="page-projects">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Portofolio</span>
+      <h2 class="section-title">Proyek yang Telah Dikerjakan</h2>
+    </div>
+    <div class="proj-controls">
+      <div class="filter-row" id="proj-filters"></div>
+      <button class="btn-add admin-only" onclick="openAddProject()">+ Tambah Proyek</button>
+    </div>
+    <div class="projects-grid" id="projects-grid">
+      <div class="empty-state" id="proj-empty">
+        <div class="empty-icon">💼</div>
+        <p>Belum ada proyek. Klik <strong>"+ Tambah Proyek"</strong> untuk menambahkan.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== SKILLS PAGE ===== -->
+<div class="page" id="page-skills">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Keahlian</span>
+      <h2 class="section-title">Apa yang Saya Kuasai</h2>
+    </div>
+    <div style="text-align:right;margin-bottom:24px" class="admin-only">
+      <button class="btn-add" onclick="openAddSkill()">+ Tambah Keahlian</button>
+    </div>
+    <div class="skills-container" id="skills-container">
+      <div class="empty-state" id="skills-empty">
+        <div class="empty-icon">🛠️</div>
+        <p>Belum ada keahlian. Klik <strong>"+ Tambah Keahlian"</strong> untuk menambahkan.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EXPERIENCE PAGE ===== -->
+<div class="page" id="page-experience">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Perjalanan</span>
+      <h2 class="section-title">Pengalaman & Pendidikan</h2>
+    </div>
+    <div style="text-align:right;margin-bottom:24px" class="admin-only">
+      <button class="btn-add" onclick="openAddExp()">+ Tambah Pengalaman</button>
+    </div>
+    <div class="exp-timeline" id="exp-container">
+      <div class="empty-state" id="exp-empty">
+        <div class="empty-icon">📜</div>
+        <p>Belum ada pengalaman. Klik <strong>"+ Tambah Pengalaman"</strong> untuk menambahkan.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== DOCUMENTS PAGE ===== -->
+<div class="page" id="page-documents">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Dokumen</span>
+      <h2 class="section-title">CV, Sertifikat & Berkas</h2>
+    </div>
+    <div class="upload-zone admin-only" id="upload-zone" onclick="document.getElementById('file-input').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+      <div class="upload-icon">⬆</div>
+      <p>Klik atau drag & drop file di sini</p>
+      <span>PDF, DOC, DOCX, JPG, PNG — Maks. 10MB</span>
+      <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none" onchange="handleFileUpload(event)"/>
+    </div>
+    <div class="docs-grid" id="docs-grid">
+      <div class="empty-state" id="docs-empty">
+        <div class="empty-icon">📄</div>
+        <p>Belum ada dokumen. Upload dokumen Anda di atas.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div class="page" id="page-contact">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Kontak</span>
+      <h2 class="section-title">Mari Berkolaborasi</h2>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <p class="contact-intro">Punya proyek menarik atau ingin berdiskusi? Inbox saya selalu terbuka untuk ide-ide baru dan kesempatan kolaborasi.</p>
+        <div class="contact-link-list" id="contact-link-list"></div>
+      </div>
+      <div class="contact-form-card">
+        <form onsubmit="submitForm(event)">
+          <div class="form-group"><label>Nama Lengkap</label><input type="text" name="name" placeholder="Nama Anda" required/></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="email@domain.com" required/></div>
+          <div class="form-group"><label>Subjek</label>
+            <select name="subject">
+              <option>Kolaborasi Proyek</option>
+              <option>UI/UX Design</option>
+              <option>Web Development</option>
+              <option>Data Analytics</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Pesan</label><textarea name="message" rows="5" placeholder="Ceritakan kebutuhan Anda..." required></textarea></div>
+          <button type="submit" class="btn-primary" style="width:100%">Kirim Pesan →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EDIT PROFILE PAGE ===== -->
+<div class="page" id="page-edit">
+  <section class="inner-page">
+    <div class="page-header">
+      <span class="section-label">Pengaturan</span>
+      <h2 class="section-title">Edit Profil</h2>
+    </div>
+    <div class="edit-grid">
+
+      <div class="edit-section">
+        <h3 class="edit-h3">📷 Foto Profil</h3>
+        <div class="photo-upload-area" onclick="document.getElementById('photo-input').click()">
+          <img id="edit-photo-preview" src="" alt="" style="display:none;width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:8px"/>
+          <div id="edit-photo-placeholder" style="font-size:3rem">📷</div>
+          <p>Klik untuk upload foto</p>
+          <span>JPG, PNG — Maks. 5MB</span>
+        </div>
+        <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)"/>
+      </div>
+
+      <div class="edit-section">
+        <h3 class="edit-h3">👤 Informasi Dasar</h3>
+        <div class="form-group"><label>Nama Lengkap</label><input type="text" id="e-name" placeholder="Nama lengkap"/></div>
+        <div class="form-group"><label>Tagline / Role</label><input type="text" id="e-role" placeholder="UI/UX Designer · Web Developer"/></div>
+        <div class="form-group"><label>Lokasi</label><input type="text" id="e-loc" placeholder="Kota, Provinsi"/></div>
+        <div class="form-group"><label>Tanggal Lahir</label><input type="text" id="e-birth" placeholder="DD Bulan YYYY"/></div>
+        <div class="form-group"><label>Pendidikan Terakhir</label><input type="text" id="e-edu" placeholder="S1 Teknik Informatika - Universitas ..."/></div>
+        <div class="form-group"><label>Pekerjaan Saat Ini</label><input type="text" id="e-job" placeholder="Freelancer / Nama Perusahaan"/></div>
+        <div class="form-group"><label>Status Ketersediaan</label>
+          <select id="e-status">
+            <option value="Tersedia untuk proyek baru">✅ Tersedia untuk proyek baru</option>
+            <option value="Tidak tersedia saat ini">🔴 Tidak tersedia saat ini</option>
+            <option value="Terbuka untuk diskusi">🟡 Terbuka untuk diskusi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="edit-section full-width">
+        <h3 class="edit-h3">✏️ Hero Headline (Judul Besar di Home)</h3>
+        <div class="form-row">
+          <div class="form-group"><label>Baris 1</label><input type="text" id="e-line1" placeholder="Desainer &"/></div>
+          <div class="form-group"><label>Baris 2 (italic)</label><input type="text" id="e-line2" placeholder="Developer"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Baris 3</label><input type="text" id="e-line3" placeholder="yang Bercerita"/></div>
+          <div class="form-group"><label>Baris 4</label><input type="text" id="e-line4" placeholder="lewat Data."/></div>
+        </div>
+      </div>
+
+      <div class="edit-section full-width">
+        <h3 class="edit-h3">📝 Bio & Deskripsi</h3>
+        <div class="form-group"><label>Bio Singkat (tampil di Home)</label><textarea id="e-bio" rows="3" placeholder="Deskripsi singkat tentang diri Anda..."></textarea></div>
+        <div class="form-group"><label>Tentang Saya (tampil di About)</label><textarea id="e-about" rows="4" placeholder="Cerita lengkap tentang diri Anda..."></textarea></div>
+        <div class="form-group"><label>Bidang Pekerjaan</label><textarea id="e-what" rows="3" placeholder="Apa yang Anda kerjakan sehari-hari..."></textarea></div>
+      </div>
+
+      <div class="edit-section">
+        <h3 class="edit-h3">🔗 Tautan & Kontak</h3>
+        <div class="form-group"><label>✉️ Email</label><input type="email" id="e-email" placeholder="email@gmail.com"/></div>
+        <div class="form-group"><label>💼 LinkedIn URL</label><input type="url" id="e-linkedin" placeholder="https://linkedin.com/in/username"/></div>
+        <div class="form-group"><label>🐙 GitHub URL</label><input type="url" id="e-github" placeholder="https://github.com/username"/></div>
+        <div class="form-group"><label>🎨 Figma URL</label><input type="url" id="e-figma" placeholder="https://figma.com/@username"/></div>
+        <div class="form-group"><label>📱 WhatsApp (kode negara + nomor)</label><input type="text" id="e-wa" placeholder="6281234567890"/></div>
+        <div class="form-group"><label>🌐 Website Lain</label><input type="url" id="e-web" placeholder="https://website-anda.com"/></div>
+      </div>
+
+      <div class="edit-section">
+        <h3 class="edit-h3">💡 Kartu Keahlian di Home</h3>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px">Akan tampil di sebelah kanan hero section. Maksimal 3 kartu.</p>
+        <div class="form-row">
+          <div class="form-group"><label>Kartu 1 — Icon</label><input type="text" id="e-card1-icon" placeholder="🎨" maxlength="2"/></div>
+          <div class="form-group"><label>Kartu 1 — Judul</label><input type="text" id="e-card1-title" placeholder="UI/UX Design"/></div>
+        </div>
+        <div class="form-group"><label>Kartu 1 — Tools</label><input type="text" id="e-card1-desc" placeholder="Figma · Prototyping · User Research"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Kartu 2 — Icon</label><input type="text" id="e-card2-icon" placeholder="💻" maxlength="2"/></div>
+          <div class="form-group"><label>Kartu 2 — Judul</label><input type="text" id="e-card2-title" placeholder="Web Development"/></div>
+        </div>
+        <div class="form-group"><label>Kartu 2 — Tools</label><input type="text" id="e-card2-desc" placeholder="HTML · CSS · JavaScript · React"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Kartu 3 — Icon</label><input type="text" id="e-card3-icon" placeholder="📊" maxlength="2"/></div>
+          <div class="form-group"><label>Kartu 3 — Judul</label><input type="text" id="e-card3-title" placeholder="Data Analytics"/></div>
+        </div>
+        <div class="form-group"><label>Kartu 3 — Tools</label><input type="text" id="e-card3-desc" placeholder="Python · SQL · Tableau · Power BI"/></div>
+      </div>
+
+      <div class="edit-section full-width" style="text-align:center;padding:24px">
+        <button class="btn-primary btn-large" onclick="saveProfile()">💾 Simpan Semua Perubahan</button>
+        <button class="btn-outline" onclick="showPage('home')" style="margin-left:12px">Kembali</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <p>© 2026 · Dibuat dengan ❤️ untuk portofolio pribadi</p>
+</footer>
+
+<!-- ===== MODALS ===== -->
+<div class="modal-overlay" id="modal-project">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Tambah Proyek</h3>
+      <button class="modal-close" onclick="closeModal('modal-project')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Nama Proyek *</label><input type="text" id="proj-title" placeholder="Nama proyek"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Kategori *</label>
+          <select id="proj-cat">
+            <option value="UI/UX">UI/UX Design</option>
+            <option value="Web">Web Development</option>
+            <option value="Data">Data Analytics</option>
+            <option value="Mobile">Mobile App</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Status</label>
+          <select id="proj-status">
+            <option value="Selesai">Selesai</option>
+            <option value="On Going">On Going</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Deskripsi *</label><textarea id="proj-desc" rows="3" placeholder="Jelaskan proyek Anda..."></textarea></div>
+      <div class="form-group"><label>Tools (pisahkan koma)</label><input type="text" id="proj-tools" placeholder="Figma, React, Python"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Link Live Demo</label><input type="url" id="proj-demo" placeholder="https://..."/></div>
+        <div class="form-group"><label>Link Repo/Figma</label><input type="url" id="proj-repo" placeholder="https://..."/></div>
+      </div>
+      <div class="form-group"><label>Hasil / Impact</label><input type="text" id="proj-impact" placeholder="Contoh: Konversi meningkat 34%"/></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-project')">Batal</button>
+      <button class="btn-primary" onclick="saveProject()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-skill">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Tambah Keahlian</h3>
+      <button class="modal-close" onclick="closeModal('modal-skill')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Nama Keahlian *</label><input type="text" id="skill-name" placeholder="React, Figma, Python..."/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Kategori *</label>
+          <select id="skill-cat">
+            <option>UI/UX Design</option>
+            <option>Web Development</option>
+            <option>Data Analytics</option>
+            <option>Tools</option>
+            <option>Soft Skills</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Level (1–100) *</label><input type="number" id="skill-level" min="1" max="100" placeholder="85"/></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-skill')">Batal</button>
+      <button class="btn-primary" onclick="saveSkill()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-exp">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Tambah Pengalaman</h3>
+      <button class="modal-close" onclick="closeModal('modal-exp')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label>Tipe</label>
+        <select id="exp-type">
+          <option value="work">💼 Pekerjaan</option>
+          <option value="edu">🎓 Pendidikan</option>
+          <option value="cert">🏆 Sertifikasi</option>
+          <option value="org">👥 Organisasi</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Judul / Posisi *</label><input type="text" id="exp-title" placeholder="UI/UX Designer"/></div>
+      <div class="form-group"><label>Instansi / Perusahaan *</label><input type="text" id="exp-company" placeholder="Nama perusahaan"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Mulai</label><input type="text" id="exp-start" placeholder="Jan 2023"/></div>
+        <div class="form-group"><label>Selesai</label><input type="text" id="exp-end" placeholder="Des 2024 / Sekarang"/></div>
+      </div>
+      <div class="form-group"><label>Deskripsi</label><textarea id="exp-desc" rows="3" placeholder="Tanggung jawab dan pencapaian..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-exp')">Batal</button>
+      <button class="btn-primary" onclick="saveExp()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal modal-large">
+    <div class="modal-header">
+      <h3 id="detail-title">Detail Proyek</h3>
+      <button class="modal-close" onclick="closeModal('modal-detail')">✕</button>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="modal-login">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <h3>🔒 Login Admin</h3>
+      <button class="modal-close" onclick="closeModal('modal-login')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:0.88rem;color:var(--mist);margin-bottom:20px;line-height:1.7">
+        Masukkan password admin untuk mengedit konten portfolio. Pengunjung biasa (rekruter) tidak perlu login.
+      </p>
+      <div class="form-group">
+        <label>Password Admin</label>
+        <input type="password" id="login-pw" placeholder="Masukkan password" onkeypress="if(event.key==='Enter') tryLogin()"/>
+      </div>
+      <p style="font-size:0.78rem;color:var(--mist);margin-top:8px;font-style:italic">
+        💡 Password default: <code style="background:var(--cream);padding:2px 8px;border-radius:4px">admin123</code> — bisa diganti di file app.js (cari variabel <code style="background:var(--cream);padding:2px 8px;border-radius:4px">ADMIN_PASSWORD</code>)
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeModal('modal-login')">Batal</button>
+      <button class="btn-primary" onclick="tryLogin()">Login</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Supabase JS Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Supabase Config (EDIT THIS FILE with your project URL and key) -->
+<script src="supabase-config.js"></script>
+<!-- Main App -->
+<script src="app.js"></script>
+</body>
+</html>
